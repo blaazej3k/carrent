@@ -84,22 +84,6 @@ module.exports = function (grunt) {
           }
         }
       },
-      test: {
-        options: {
-          port: 9001,
-          middleware: function (connect) {
-            return [
-              connect.static('.tmp'),
-              connect.static('test'),
-              connect().use(
-                '/bower_components',
-                connect.static('./bower_components')
-              ),
-              connect.static(appConfig.app)
-            ];
-          }
-        }
-      },
       dist: {
         options: {
           open: true,
@@ -120,12 +104,7 @@ module.exports = function (grunt) {
           '<%= yeoman.app %>/scripts/{,*/}*.js'
         ]
       },
-      test: {
-        options: {
-          jshintrc: 'test/.jshintrc'
-        },
-        src: ['test/spec/{,*/}*.js']
-      }
+    
     },
 
     // compile sass files
@@ -403,9 +382,6 @@ module.exports = function (grunt) {
       server: [
         'copy:styles'
       ],
-      test: [
-        'copy:styles'
-      ],
       dist: [
         'copy:styles',
         'imagemin',
@@ -414,12 +390,7 @@ module.exports = function (grunt) {
     },
 
     // Test settings
-    karma: {
-      unit: {
-        configFile: 'test/karma.conf.js',
-        singleRun: true
-      }
-    }
+   
   });
 
   grunt.loadNpmTasks('grunt-contrib-sass');
@@ -450,8 +421,7 @@ module.exports = function (grunt) {
     'clean:server',
     'concurrent:test',
     'autoprefixer',
-    'connect:test',
-    'karma'
+    'connect:test'
   ]);
 
   grunt.registerTask('build', [
@@ -474,7 +444,6 @@ module.exports = function (grunt) {
 
   grunt.registerTask('default', [
     'newer:jshint',
-    'test',
     'build'
   ]);
 };
