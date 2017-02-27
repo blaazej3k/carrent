@@ -1,0 +1,67 @@
+<div class="page page-samochody">
+  <div class="pagecontent">
+    <section class="tile" fullscreen="isFullscreen06">
+
+      <!-- tile header -->
+      <div class="tile-header dvd dvd-btm">
+        <h1 class="custom-font"><strong>Usuń</strong> samochód nr: {{samochod.id}}</h1>
+        <ul class="controls">
+          <li class="dropdown" uib-dropdown on-toggle="toggled(open)">
+
+            <a href uib-dropdown-toggle class="dropdown-toggle settings"><i class="fa fa-cog"></i></a>
+
+            <ul class="dropdown-menu pull-right with-arrow animated littleFadeInUp">
+              <li>
+                <a href tile-control-toggle>
+                  <span class="minimize"><fa name="angle-down"></fa>&nbsp;&nbsp;&nbsp;Minimize</span>
+                  <span class="expand"><fa name="angle-up"></fa>&nbsp;&nbsp;&nbsp;Expand</span>
+                </a>
+              </li>
+              <li>
+                <a href tile-control-refresh ng-click="ajaxFaker()">
+                  <fa name="refresh"></fa> Refresh
+                </a>
+              </li>
+              <li>
+                <a href tile-control-fullscreen ng-click="isFullscreen04 = !isFullscreen04">
+                  <fa name="expand"></fa> Fullscreen
+                </a>
+              </li>
+
+            </ul>
+
+          </li>
+          <li class="remove"><a href tile-control-close><i class="fa fa-times"></i></a></li>
+        </ul>
+      </div>
+
+      <div class="tile-body">
+
+
+
+        <form class="create-form" role="form" ng-submit="displaysamochodid.createSamochod(samochoddash.newSamochod)">
+
+          <p><h5>Identyfikator: <b>{{samochod.id}}</b></h5></p>
+          <p><h5>Marka: <b>{{samochod.marka.nazwaMarki}}</b></h5></p>
+          <hr class="line-dashed line-full"/>
+          <p><h5>Model: <b>{{samochod.model.nazwaModelu}}</b></h5></p>
+          <hr class="line-dashed line-full"/>
+          <p><h5>Typ: <b>{{samochod.typ.nazwaTypu}}</b></h5></p>
+          <hr class="line-dashed line-full"/>
+          <p><h5>Numer rejestracyjny: <b>{{samochod.nrRejestracyjny}}</b></h5></p>
+          <hr class="line-dashed line-full"/>
+          <p><h5>Czy na pewno chcesz usunąć samochód?<b></b></h5></p>
+          <hr class="line-dashed line-full"/>
+          <button type="submit" class="md-raised md-primary">Tak usuń<a href= "#/app/samochody/show"></a></button>
+          <section class="tile" fullscreen="isFullscreen01">
+            <md-content class="md-padding buttondemoBasicUsage">
+              <section layout="row" layout-sm="column" layout-align="center center">
+                <md-button class="md-raised md-primary" ng-href="#/app/samochody/show">Powrót do listy samochodów</md-button>
+              </section>
+        </form>
+
+
+      </div>
+    </section>
+  </div>
+</div>

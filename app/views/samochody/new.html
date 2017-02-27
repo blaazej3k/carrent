@@ -1,0 +1,174 @@
+<div class="page page-samochody">
+  <div class="pagecontent">
+<section class="tile" fullscreen="isFullscreen06">
+
+  <!-- tile header -->
+  <div class="tile-header dvd dvd-btm">
+    <h1 class="custom-font"><strong>Dodaj</strong> nowy samochód</h1>
+    <ul class="controls">
+      <li class="dropdown" uib-dropdown on-toggle="toggled(open)">
+
+        <a href uib-dropdown-toggle class="dropdown-toggle settings"><i class="fa fa-cog"></i></a>
+
+        <ul class="dropdown-menu pull-right with-arrow animated littleFadeInUp">
+          <li>
+            <a href tile-control-toggle>
+              <span class="minimize"><fa name="angle-down"></fa>&nbsp;&nbsp;&nbsp;Minimize</span>
+              <span class="expand"><fa name="angle-up"></fa>&nbsp;&nbsp;&nbsp;Expand</span>
+            </a>
+          </li>
+          <li>
+            <a href tile-control-refresh ng-click="ajaxFaker()">
+              <fa name="refresh"></fa> Refresh
+            </a>
+          </li>
+          <li>
+            <a href tile-control-fullscreen ng-click="isFullscreen04 = !isFullscreen04">
+              <fa name="expand"></fa> Fullscreen
+            </a>
+          </li>
+
+        </ul>
+
+      </li>
+      <li class="remove"><a href tile-control-close><i class="fa fa-times"></i></a></li>
+    </ul>
+  </div>
+  <!-- /tile header -->
+
+  <!--<div ng-controller="SamochodyNew">-->
+    <!--<div class="well">-->
+      <!--<form role="form" ng-submit="createSam(newSamm)">-->
+        <!--<div class="form-group">-->
+          <!--<input type="text" class="form-control underline-input" ng-model="newSamm.marka">-->
+        <!--</div>-->
+        <!--<button type="submit" class="btn btn-primary">Wyślij</button>-->
+      <!--</form>-->
+    <!--</div>-->
+  <!--</div>-->
+
+  <!-- tile body -->
+  <div class="tile-body">
+
+
+
+    <form name="samochod" class="create-form" role="form" ng-submit="samochoddash.createSamochod(samochoddash.newSamochod)">
+
+      <div class="form-group">
+        <label class="col-sm-2 control-label">Marka</label>
+        <div class="col-sm-10">
+          <input type="text" name="marka" ng-pattern="/^[a-zA-ZąćęłńóśźżĄĘŁŃÓŚŹŻ]+$/" ng-minlength="2" class="form-control underline-input" ng-model="samochoddash.newSamochod.marka.nazwaMarki" placeholder="Wpisz markę samochodu" required>
+          <div ng-messages="samochod.marka.$error">
+            <p ng-message="pattern">Nieprawidłowa nazwa marki.</p>
+            <p ng-message="minlength">Nazwa jest za krótka.</p>
+            <p ng-message="required">Marka jest wymagana.</p>
+          </div>
+        </div>
+      </div>
+      <hr class="line-dashed line-full"/>
+
+      <div class="form-group">
+        <label class="col-sm-2 control-label">Model</label>
+        <div class="col-sm-10">
+          <input type="text" name="model" ng-minlength="2" class="form-control underline-input" ng-model="samochoddash.newSamochod.model.nazwaModelu" placeholder="Wpisz model samochodu" required>
+          <div ng-messages="samochod.model.$error">
+            <p ng-message="minlength">Nazwa jest za krótka.</p>
+            <p ng-message="required">Model jest wymagany.</p>
+          </div>
+        </div>
+      </div>
+
+      <hr class="line-dashed line-full"/>
+
+      <div class="form-group">
+        <label class="col-sm-2 control-label">Typ</label>
+        <div class="col-sm-10" ng-controller="TypCtrl">
+          <select name="typ" class="form-control mb-10 underline-input" ng-model="samochoddash.newSamochod.typ.id" required>
+            <option value="" disabled selected hidden></option>
+            <option ng-repeat="typ in typ" ng-value="typ.id">{{typ.nazwaTypu}}</option>
+          </input>
+          </select>
+          <div ng-messages="samochod.typ.$error">
+            <p ng-message="required">Typ jest wymagany.</p>
+          </div>
+        </div>
+      </div>
+
+      <hr class="line-dashed line-full"/>
+
+      <div class="form-group">
+        <label class="col-sm-2 control-label">Numer Rejestracyjny</label>
+        <div class="col-sm-10">
+          <input type="text" name="rej" ng-pattern="/^[A-Z]{2,3}([ ]+|-)?[0-9A-Z]{4,5}$/" ng-minlength="2" class="form-control underline-input" ng-model="samochoddash.newSamochod.nrRejestracyjny" placeholder="Podaj numer rejestracyjny" required>
+          <div ng-messages="samochod.rej.$error">
+            <p ng-message="pattern">Nieprawidłowy numer rejestracyjny.</p>
+            <p ng-message="minlength">Numer jest za krótki.</p>
+            <p ng-message="required">Numer rejestracyjny jest wymagany.</p>
+          </div>
+        </div>
+      </div>
+
+      <hr class="line-dashed line-full"/>
+
+      <div class="form-group">
+        <label class="col-sm-2 control-label">Numer VIN</label>
+        <div class="col-sm-10">
+          <input type="text" name="vin" ng-pattern="/^[A-Z]{3,3}[0-9A-Z]{14,14}$/" ng-minlength="17" class="form-control underline-input" ng-model="samochoddash.newSamochod.vin" placeholder="Podaj numer VIN">
+          <div ng-messages="samochod.vin.$error">
+            <p ng-message="pattern">Nieprawidłowy numer VIN.</p>
+            <p ng-message="minlength">VIN jest za krótki.</p>
+          </div>
+        </div>
+      </div>
+
+      <hr class="line-dashed line-full"/>
+
+      <div class="form-group">
+        <label class="col-sm-2 control-label">Paliwo</label>
+        <div class="col-sm-10">
+          <select class="form-control mb-10 underline-input" ng-model="samochoddash.newSamochod.paliwo">
+            <option>Diesel</option>
+            <option>Benzyna</option>
+            <option>LPG</option>
+            <option>Benzyna + LPG</option>
+          </select>
+        </div>
+      </div>
+
+      <hr class="line-dashed line-full"/>
+
+      <div class="form-group">
+        <label class="col-sm-2 control-label">Stan licznika</label>
+        <div class="col-sm-10">
+          <input type="text" name="licz" ng-pattern="/^[0-9]/" class="form-control underline-input" ng-model="samochoddash.newSamochod.stanLicznika" placeholder="Wpisz aktualny stan licznika">
+          <div ng-messages="samochod.licz.$error">
+            <p ng-message="pattern">Błąd. Tylko liczby!</p>
+          </div>
+        </div>
+      </div>
+
+      <hr class="line-dashed line-full"/>
+
+      <div class="form-group">
+        <label class="col-sm-2 control-label">Czy samochód jest dostępny?</label>
+        <div class="col-sm-10">
+          <div class="col-sm-2">
+            <label class="checkbox checkbox-custom-alt checkbox-custom-lg">
+              <input name="customRadioAlt" type="radio" ng-model="samochoddash.newSamochod.dostepnosc" value="true"><i></i> Tak.
+            </label>
+            <label class="checkbox checkbox-custom-alt checkbox-custom-lg">
+              <input name="customRadioAlt" type="radio" ng-model="samochoddash.newSamochod.dostepnosc" value="false"><i></i> Nie.
+            </label>
+          </div>
+        </div>
+      </div>
+
+      <hr class="line-dashed line-full"/>
+  <button type="submit" class="btn btn-primary" ng-disabled="samochod.$invalid">Dodaj!</button>
+
+    </form>
+
+  </div>
+</section>
+</div>
+</div>

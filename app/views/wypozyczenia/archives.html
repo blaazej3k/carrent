@@ -1,0 +1,115 @@
+<div class="page">
+
+<div class="pagecontent">
+
+
+  <!-- row -->
+  <div class="row">
+
+
+    <!-- col -->
+    <div class="col-md-10">
+
+
+
+      <section class="tile" fullscreen="isFullscreen04">
+
+        <!-- tile header -->
+        <div class="tile-header dvd dvd-btm">
+          <h1 class="custom-font"><strong>Historia</strong> wypożyczeń</h1>
+          <ul class="controls">
+            <li class="dropdown" uib-dropdown on-toggle="toggled(open)">
+
+              <a href uib-dropdown-toggle class="dropdown-toggle settings"><i class="fa fa-cog"></i></a>
+
+              <ul class="dropdown-menu pull-right with-arrow animated littleFadeInUp">
+                <li>
+                  <a href tile-control-toggle>
+                    <span class="minimize"><fa name="angle-down"></fa>&nbsp;&nbsp;&nbsp;Minimize</span>
+                    <span class="expand"><fa name="angle-up"></fa>&nbsp;&nbsp;&nbsp;Expand</span>
+                  </a>
+                </li>
+                <li>
+                  <a href tile-control-refresh ng-click="ajaxFaker()">
+                    <fa name="refresh"></fa> Refresh
+                  </a>
+                </li>
+                <li>
+                  <a href tile-control-fullscreen ng-click="isFullscreen04 = !isFullscreen04">
+                    <fa name="expand"></fa> Fullscreen
+                  </a>
+                </li>
+
+              </ul>
+
+            </li>
+            <li class="remove"><a href tile-control-close><i class="fa fa-times"></i></a></li>
+          </ul>
+        </div>
+        <!-- /tile header -->
+
+        <!-- tile body -->
+        <div class="tile-body p-0">
+
+          <!-- tile body -->
+          <div class="tile-body p-0">
+
+            <table class="table table-hover" >
+              <thead>
+              <tr>
+                <th>#</th>
+                <th>Samochod</th>
+                <th>Klient</th>
+                <th>Data wypożyczenia</th>
+                <th>Data zakończenia</th>
+                <th>Szczegóły</th>
+              </tr>
+              </thead>
+              <tbody>
+              <tr ng-repeat="wyp in wypozyczeniedash.wypozyczenie | filter: {status: 'false'}">
+                <td>{{wyp.id}}</td>
+                <td>#{{wyp.samochod.id}}. {{wyp.samochod.marka.nazwaMarki}} {{wyp.samochod.model.nazwaModelu}}</td>
+                <td>{{wyp.klient.imieKlienta}} {{wyp.klient.nazwiskoKlienta}}</td>
+                <td><span>{{wyp.dataWypozyczenia | date: 'dd/MM/yyyy'}}</span></td>
+                <td><span>{{wyp.dataZwrotu | date: 'dd/MM/yyyy'}}</span></td>
+                <td><div class="col-md-3 col-sm-4"><a ng-href="/#/app/wypozyczenia/list/{{wyp.id}}">
+                  <i class="glyphicon glyphicon-list-alt"></i>
+                </a>
+                </div></td>
+              </tr>
+              </tbody>
+            </table>
+
+          </div>
+          <!-- /tile body -->
+
+
+          <!-- /tile -->
+
+        </div>
+        <!-- /tile body -->
+
+      </section>
+
+
+
+
+
+    </div>
+    <!-- /col -->
+
+
+    <!-- col -->
+
+    <!-- /tile body -->
+
+    </section>
+    <!-- /tile -->
+
+
+
+
+  </div>
+  <!-- /col -->
+</div>
+</div>

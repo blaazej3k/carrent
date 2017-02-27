@@ -1,0 +1,123 @@
+<div class="page page-tables-bootstrap" xmlns="http://www.w3.org/1999/html">
+  <div class="pagecontent">
+    <div class="row">
+      <div class="col-md-12">
+        <section class="tile" fullscreen="isFullscreen04">
+          <div class="tile-header dvd dvd-btm">
+            <h1 class="custom-font"><strong>Informacje o</strong> wypozyczeniu nr: {{wypozyczenie.id}}</h1></br>
+            <ul class="controls">
+              <li class="dropdown" uib-dropdown on-toggle="toggled(open)">
+                <a href uib-dropdown-toggle class="dropdown-toggle settings"><i class="fa fa-cog"></i></a>
+                <ul class="dropdown-menu pull-right with-arrow animated littleFadeInUp">
+                  <li>
+                    <a href tile-control-toggle>
+                      <span class="minimize"><fa name="angle-down"></fa>&nbsp;&nbsp;&nbsp;Minimize</span>
+                      <span class="expand"><fa name="angle-up"></fa>&nbsp;&nbsp;&nbsp;Expand</span>
+                    </a>
+                  </li>
+                  <li>
+                    <a href tile-control-refresh ng-click="ajaxFaker()">
+                      <fa name="refresh"></fa> Refresh
+                    </a>
+                  </li>
+                  <li>
+                    <a href tile-control-fullscreen ng-click="isFullscreen04 = !isFullscreen04">
+                      <fa name="expand"></fa> Fullscreen
+                    </a>
+                  </li>
+                </ul>
+              </li>
+              <li class="remove"><a href tile-control-close><i class="fa fa-times"></i></a></li>
+            </ul>
+          </div>
+          <div class="tile-body p-20">
+          <div class="tile-body p-20">
+            <hr class="line-dashed line-full"/>
+            <h4 class="custom-font"><strong>Identyfikator</strong> wypozyczenia: {{wypozyczenie.id}}</h4>
+            <hr class="line-dashed line-full"/>
+            <h4 class="custom-font"><strong>Data</strong> wypozyczenia: <span>{{wypozyczenie.dataWypozyczenia | date: 'dd/MM/yyyy'}}</span></h4>
+            <hr class="line-dashed line-full"/>
+            <h4 class="custom-font"><strong>Data</strong> zwrotu/zakończenia:  <span>{{wypozyczenie.dataZwrotu | date: 'dd/MM/yyyy'}}</span></h4>
+            <hr class="line-dashed line-full"/>
+            <h4 class="custom-font" ng-if="wypozyczenie.status == false"><strong>Koszt</strong> wypożyczenia:  <span>{{((wypozyczenie.dataZwrotu - wypozyczenie.dataWypozyczenia | date: 'd')*(wypozyczenie.samochod.typ.cenaTypu/7)).toPrecision(5)}} zł</span></h4>
+            <h4 class="custom-font">_______________________________________</h4>
+            <h4 class="custom-font" ng-if="wypozyczenie.status == true"><strong>Status</strong> wypożyczenia: <b>Aktywne</b></h4>
+            <h4 class="custom-font" ng-if="wypozyczenie.status == false"><strong>Status</strong> wypożyczenia: <b>Zakończone</b></h4>
+              <form class="create-form" role="form" ng-submit="wypozyczeniedash.createWypozyczenie(wypozyczeniedash.closeWyp)">
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label class="col-sm-2 control-label">Samochod</label>
+                      <div class="col-sm-10" ng-controller="AutoCtrl">
+                        <p>Identyfikator samochodu: <b>{{wypozyczenie.samochod.id}}</b> </p>
+                        <p><h4><b>{{wypozyczenie.samochod.marka.nazwaMarki}} {{wypozyczenie.samochod.model.nazwaModelu}} </b></h4></p>
+                        <p> Numer rejestracyjny: <b>{{wypozyczenie.samochod.nrRejestracyjny}}</b></p>
+                        <p> Stan licznika przed wypożyczeniem: <b>{{wypozyczenie.samochod.stanLicznika}}</b></p>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label class="col-sm-2 control-label">Klient</label>
+                   <div class="col-sm-10">
+                    <p>Identyfikator klienta: <b>{{wypozyczenie.klient.id}}</b></p>
+                    <p>Imię i Nazwisko: <h4><b>{{wypozyczenie.klient.imieKlienta}} {{wypozyczenie.klient.nazwiskoKlienta}}</b></h4></p>
+                    <p>Adres: <b>{{wypozyczenie.klient.adres.miejscowosc}} ul.{{wypozyczenie.klient.adres.ulica}} {{wypozyczenie.klient.adres.nrDomu}}</b></p>
+                    <p>Telefon: <b>{{wypozyczenie.klient.telefon.numer}}</b></p>
+
+
+                  </div>
+                </div>
+                  <hr class="line-dashed line-full"/>
+              </div>
+                <hr class="line-dashed line-full"/>
+                <h4 class="custom-font">_______________________________________</h4>
+              <div class="col-md-12">
+                <div class="form-group">
+                  <label class="col-sm-2 control-label">Zdarzenia</label>
+                  <div class="col-sm-10">
+                    <table class="table table-hover">
+                      <thead>
+                      <tr>
+                        <th>#</th>
+                        <th>Data zdarzenia</th>
+                        <th>Szkody</th>
+                        <th>Winny</th>
+                      </tr>
+                      </thead>
+                      <tbody>
+                      <tr ng-repeat="wyp in wypozyczenie.zdarzenie">
+                        <td>{{wyp.id}}</td>
+                        <td><span>{{wyp.dataZdarzenia | date: 'dd/MM/yyyy'}}</span></td>
+                        <td>{{wyp.szkody}}</td>
+                        <td ng-if="wyp.winny == true">Klient</td>
+                        <td ng-if="wyp.winny == false">inny</td>
+                      </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+                <hr class="line-dashed line-full"/>
+                <h4 class="custom-font">_______________________________________</h4>
+                <div class="col-md-12">
+                  <div class="form-group">
+                    <md-button class="md-raised md-primary" ng-href="#/app/wypozyczenia/close/{{wypozyczenie.id}}" ng-if="wypozyczenie.status==true">Zakończ wypożyczenie</md-button>
+                    <md-button class="md-raised md-primary" ng-href="#/app/wypozyczenia/zdarzenia/{{wypozyczenie.id}}" ng-if="wypozyczenie.status==true">Dodaj zdarzenie</md-button>
+                    <md-button class="md-raised md-primary" ng-href="#/app/wypozyczenia/show">Powrót do listy wypożyczeń</md-button>
+                  </div>
+                </div>
+
+                <h4 class="custom-font">_______________________________________</h4>
+                <hr class="line-dashed line-full"/>
+
+            </form>
+
+          </div>
+          </div>
+        </section>
+      </div>
+    </div>
+  </div>
+</div>
+
+

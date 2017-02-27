@@ -1,0 +1,180 @@
+<div class="page">
+<div class="pagecontent">
+
+
+  <!-- row -->
+  <div class="row">
+
+
+    <!-- col -->
+    <div class="col-md-6">
+
+  <section class="tile" fullscreen="isFullscreen04">
+
+    <div class="panel panel-greensea panel-filled">
+      <div class="panel-heading">
+        <h3 class="panel-title custom-font">Szczegóły samochodu</h3>
+      </div>
+      <div class="panel-body">
+        <p><h2><b>{{samochod.marka.nazwaMarki}}</b>   {{samochod.model.nazwaModelu}}</h2></p>
+        <table class="table table-hover" >
+          <thead>
+          <tr>
+            <th><h5>Numer rejestracyjny</h5></th>
+            <th><h4><b>{{samochod.nrRejestracyjny}}</b></h4></th>
+          </tr>
+          <tr>
+            <th><h5>Numer VIN</h5></th>
+            <th><h4><b>{{samochod.vin}}</b></h4></th>
+          </tr>
+          <tr>
+            <th><h5>Rodzaj paliwa</h5></th>
+            <th><h4><b>{{samochod.paliwo}}</b></h4></th>
+          </tr>
+          <tr>
+            <th><h5>Typ</h5></th>
+            <th><h4><b>{{samochod.typ.nazwaTypu}}</b></h4></th>
+          </tr>
+          <tr>
+            <th><h5>Cena (za tydzień)</h5></th>
+            <th><h4><b>{{samochod.typ.cenaTypu}} zł</b></h4></th>
+          </tr>
+          <tr>
+            <th><h5>Stan licznika</h5></th>
+            <th><h4><b>{{samochod.stanLicznika}}</b></h4></th>
+          </tr>
+          <tr ng-if="samochod.dostepnosc == true">
+            <th><h5>Dostępność</h5></th>
+            <th><h4><b>Tak</b></h4></th>
+          </tr>
+          <tr ng-if="samochod.dostepnosc == false">
+            <th><h5>Dostępność</h5></th>
+            <th><h4><b>Nie</b></h4></th>
+          </tr>
+          </thead>
+        </table>
+      </div>
+
+    </div>
+    <div class>
+
+          <section layout="row" layout-sm="column" layout-align="center center">
+            <md-button class="md-raised md-accent" ng-if="samochod.dostepnosc == true" ng-href="#/app/wypozyczenia/new1/{{samochod.id}}">Wypożycz samochód</md-button>
+            <md-button class="md-raised md-accent" ng-href="#/app/samochody/edit/{{samochod.id}}">Edytuj samochód</md-button>
+            <md-button class="md-raised md-accent" ng-href="#/app/samochody/delete/{{samochod.id}}" >Usuń samochód</md-button>
+          </section>
+    </div>
+    <div class>
+      <section class="tile" fullscreen="isFullscreen01">
+        <md-content class="md-padding buttondemoBasicUsage">
+          <section layout="row" layout-sm="column" layout-align="center center">
+            <md-button class="md-raised md-primary" ng-href="#/app/samochody/ubezpieczenia/{{samochod.id}}">Dodaj ubezpieczenie</md-button>
+            <md-button class="md-raised md-primary"  ng-href="#/app/samochody/naprawy/{{samochod.id}}">Dodaj naprawę</md-button>
+            <md-button class="md-raised md-primary"  ng-href="#/app/samochody/przeglady/{{samochod.id}}">Dodaj przegląd</md-button>
+          </section>
+        </md-content>
+      </section>
+    </div>
+  </section>
+</div>
+    <!-- col -->
+
+    <div class="col-md-6">
+
+      <section class="tile" fullscreen="isFullscreen04">
+
+        <div class="panel panel-greensea panel-filled">
+          <div class="panel-heading">
+            <h3 class="panel-title custom-font">Ubezpieczenia</h3>
+          </div>
+          <div class="panel-body">
+            <table class="table table-hover" >
+              <thead>
+              <tr>
+                <th>Rodzaj</th>
+                <th>Ważne od</th>
+                <th>Ważne do</th>
+                <th>Koszt</th>
+              </tr>
+              </thead>
+              <tbody>
+              <tr ng-repeat="ube in samochod.ubezpieczenia">
+                <td>{{ube.rodzaj}}</td>
+                <td><span>{{ube.dataWystawienia | date: 'dd/MM/yyyy'}}</span></td>
+                <td><span>{{ube.dataNastepnego | date: 'dd/MM/yyyy'}}</span></td>
+                <td>{{ube.cena}} zł</td>
+              </tr>
+              </tbody>
+            </table>
+            <!--<p ng-repeat="ube in samochod.ubezpieczenia">{{ube.rodzaj}}</p>-->
+          </div>
+        </div>
+
+      </section>
+    </div>
+
+    <div class="col-md-6">
+
+      <section class="tile" fullscreen="isFullscreen04">
+
+        <div class="panel panel-greensea panel-filled">
+          <div class="panel-heading">
+            <h3 class="panel-title custom-font">Naprawy</h3>
+          </div>
+          <div class="panel-body">
+            <table class="table table-hover" >
+              <thead>
+              <tr>
+                <th>Data</th>
+                <th>Koszt</th>
+                <th>Opis</th>
+              </tr>
+              </thead>
+              <tbody>
+              <tr ng-repeat="nap in samochod.naprawy">
+                <td><span>{{nap.dataNaprawy | date: 'dd/MM/yyyy'}}</span></td>
+                <td>{{nap.kosztNaprawy}} zł</td>
+                <td>{{nap.opisNaprawy}}</td>
+              </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+      </section>
+    </div>
+
+    <div class="col-md-6">
+
+      <section class="tile" fullscreen="isFullscreen04">
+
+        <div class="panel panel-greensea panel-filled">
+          <div class="panel-heading">
+            <h3 class="panel-title custom-font">Przeglądy</h3>
+          </div>
+          <div class="panel-body">
+            <table class="table table-hover" >
+              <thead>
+              <tr>
+                <th>Data</th>
+                <th>Ważny do</th>
+                <th>Przebieg</th>
+              </tr>
+              </thead>
+              <tbody>
+              <tr ng-repeat="prze in samochod.przeglady">
+                <td><span>{{prze.dataPrzegladu | date: 'dd/MM/yyyy'}}</span></td>
+                <td><span>{{prze.dataNastepnegoPrzegladu | date: 'dd/MM/yyyy'}}</span></td>
+                <td>{{prze.przebieg}}</td>
+              </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+      </section>
+    </div>
+
+    </div>
+</div>
+</div>

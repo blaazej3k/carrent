@@ -1,0 +1,113 @@
+<div class="page page-ng-table">
+
+  <!-- page content -->
+  <div class="pagecontent">
+
+    <!-- row -->
+    <div class="row">
+      <div class="tile-body p-0">
+
+        <!-- tile body -->
+
+        <section class="tile" fullscreen="isFullscreen01">
+          <md-content class="md-padding buttondemoBasicUsage">
+            <section layout="row" layout-sm="column" layout-align="center center">
+              <md-button class="md-raised md-primary" ng-href="#/app/klienci/new">Dodaj nowego klienta</md-button>
+            </section>
+
+
+            <!-- /tile body -->
+
+
+            <!-- /tile -->
+
+      </div>
+      <!-- col -->
+      <div class="col-md-12">
+
+        <section class="tile" fullscreen="isFullscreen04">
+
+          <!-- tile header -->
+          <div class="tile-header dvd dvd-btm">
+            <h1 class="custom-font"><strong>Baza</strong> klientów</h1>
+            <ul class="controls">
+              <li class="dropdown" uib-dropdown on-toggle="toggled(open)">
+
+                <a href uib-dropdown-toggle class="dropdown-toggle settings"><i class="fa fa-cog"></i></a>
+
+                <ul class="dropdown-menu pull-right with-arrow animated littleFadeInUp">
+                  <li>
+                    <a href tile-control-toggle>
+                      <span class="minimize"><fa name="angle-down"></fa>&nbsp;&nbsp;&nbsp;Minimize</span>
+                      <span class="expand"><fa name="angle-up"></fa>&nbsp;&nbsp;&nbsp;Expand</span>
+                    </a>
+                  </li>
+                  <li>
+                    <a href tile-control-refresh ng-click="ajaxFaker()">
+                      <fa name="refresh"></fa> Refresh
+                    </a>
+                  </li>
+                  <li>
+                    <a href tile-control-fullscreen ng-click="isFullscreen04 = !isFullscreen04">
+                      <fa name="expand"></fa> Fullscreen
+                    </a>
+                  </li>
+
+                </ul>
+
+              </li>
+              <li class="remove"><a href tile-control-close><i class="fa fa-times"></i></a></li>
+            </ul>
+          </div>
+          <!-- /tile header -->
+
+          <!-- tile body -->
+          <div class="tile-body" ng-controller="KlienciCtrl">
+
+
+            <table ng-table="tableParams" show-filter="false" class="table table-custom">
+              <tr ng-repeat="klient in klientdash.klient">
+                <td data-title="'Imię: '" filter="{ '{{klient.imieKlienta}}': 'text' }">
+                  {{klient.imieKlienta}}
+                </td>
+                <td data-title="'Nazwisko: '" sortable="'nazwiskoKlienta'" filter="{ 'nazwiskoKlienta': 'text' }">
+                  {{klient.nazwiskoKlienta}}
+                </td>
+                <td data-title="'Szczegóły'"><div class="col-md-3 col-sm-4"><a ng-href="/#/app/klienci/list/{{klient.id}}">
+                  <i class="glyphicon glyphicon-list-alt"></i>
+                </a>
+                </div></td>
+              </tr>
+            </table>
+
+          </div>
+          <!-- /tile body -->
+
+        </section>
+
+      </div>
+      <!-- /col -->
+
+      </section>
+      <!-- /tile -->
+    </div>
+    <!-- /col -->
+  </div>
+  <!-- /row -->
+
+
+
+
+
+
+</div>
+<!-- /page content -->
+
+
+</div>
+
+
+
+
+
+

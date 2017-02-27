@@ -1,0 +1,146 @@
+<div class="page page-samochody">
+  <div class="pagecontent">
+    <section class="tile" fullscreen="isFullscreen06">
+
+      <!-- tile header -->
+      <div class="tile-header dvd dvd-btm">
+        <h1 class="custom-font"><strong>Proces dodawania</strong> nowego wypozyczenia</h1>
+        <ul class="controls">
+          <li class="dropdown" uib-dropdown on-toggle="toggled(open)">
+
+            <a href uib-dropdown-toggle class="dropdown-toggle settings"><i class="fa fa-cog"></i></a>
+
+            <ul class="dropdown-menu pull-right with-arrow animated littleFadeInUp">
+              <li>
+                <a href tile-control-toggle>
+                  <span class="minimize"><fa name="angle-down"></fa>&nbsp;&nbsp;&nbsp;Minimize</span>
+                  <span class="expand"><fa name="angle-up"></fa>&nbsp;&nbsp;&nbsp;Expand</span>
+                </a>
+              </li>
+              <li>
+                <a href tile-control-refresh ng-click="ajaxFaker()">
+                  <fa name="refresh"></fa> Refresh
+                </a>
+              </li>
+              <li>
+                <a href tile-control-fullscreen ng-click="isFullscreen04 = !isFullscreen04">
+                  <fa name="expand"></fa> Fullscreen
+                </a>
+              </li>
+
+            </ul>
+
+          </li>
+          <li class="remove"><a href tile-control-close><i class="fa fa-times"></i></a></li>
+        </ul>
+      </div>
+      <!-- /tile header -->
+
+      <!--<div ng-controller="SamochodyNew">-->
+      <!--<div class="well">-->
+      <!--<form role="form" ng-submit="createSam(newSamm)">-->
+      <!--<div class="form-group">-->
+      <!--<input type="text" class="form-control underline-input" ng-model="newSamm.marka">-->
+      <!--</div>-->
+      <!--<button type="submit" class="btn btn-primary">Wyślij</button>-->
+      <!--</form>-->
+      <!--</div>-->
+      <!--</div>-->
+
+      <!-- tile body -->
+      <div class="tile-body">
+
+
+        <div class="tile-header dvd dvd-btm">
+          <h1 class="custom-font"><strong>Etap 1  </strong> SAMOCHÓD</h1>
+          <ul class="controls">
+            <li class="dropdown" uib-dropdown on-toggle="toggled(open)">
+
+              <a href uib-dropdown-toggle class="dropdown-toggle settings"><i class="fa fa-cog"></i></a>
+
+              <ul class="dropdown-menu pull-right with-arrow animated littleFadeInUp">
+                <li>
+                  <a href tile-control-toggle>
+                    <span class="minimize"><fa name="angle-down"></fa>&nbsp;&nbsp;&nbsp;Minimize</span>
+                    <span class="expand"><fa name="angle-up"></fa>&nbsp;&nbsp;&nbsp;Expand</span>
+                  </a>
+                </li>
+                <li>
+                  <a href tile-control-refresh ng-click="ajaxFaker()">
+                    <fa name="refresh"></fa> Refresh
+                  </a>
+                </li>
+                <li>
+                  <a href tile-control-fullscreen ng-click="isFullscreen04 = !isFullscreen04">
+                    <fa name="expand"></fa> Fullscreen
+                  </a>
+                </li>
+
+              </ul>
+
+            </li>
+            <li class="remove"><a href tile-control-close><i class="fa fa-times"></i></a></li>
+          </ul>
+        </div>
+        <!-- /tile header -->
+
+        <!-- tile body -->
+        <div class="tile-body p-0">
+
+          <!-- tile body -->
+          <div class="tile-body p-0">
+
+
+            <table class="table table-hover" >
+              <thead>
+              <tr>
+                <th>#</th>
+                <th>Marka</th>
+                <th>Model</th>
+                <th>Nr rejestracyjny</th>
+                <th>Szczegóły</th>
+                <th>Wybierz samochód</th>
+              </tr>
+              </thead>
+              <tbody>
+              <tr ng-repeat="auto in samochoddash.samochod | filter: {dostepnosc: 'true'}">
+                <td>{{auto.id}}</td>
+                <td>{{auto.marka.nazwaMarki}}</td>
+                <td>{{auto.model.nazwaModelu}}</td>
+                <td>{{auto.nrRejestracyjny}}</td>
+                <td><div class="col-md-3 col-sm-4"><a ng-href="/#/app/samochody/list/{{auto.id}}">
+                  <i class="glyphicon glyphicon-list-alt"></i>
+                </a>
+                </div></td>
+                <td><div class="col-md-3 col-sm-4">
+                  <md-button class="md-raised md-primary" ng-href="/#/app/wypozyczenia/new1/{{auto.id}}">Wypożycz ten samochód</md-button>
+                  <!--<button type="submit" class="btn btn-primary">Wypożycz ten samochód</button>-->
+                </a>
+                </div></td>
+              </tr>
+              </tbody>
+            </table>
+          </div>
+          <!-- /tile body -->
+
+
+          <!-- /tile -->
+
+        </div>
+        <!-- /tile body -->
+
+
+
+
+
+
+
+  </div>
+
+
+
+
+
+    </section>
+  </div>
+</div>

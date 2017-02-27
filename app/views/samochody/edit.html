@@ -1,0 +1,143 @@
+<div class="page page-samochody">
+  <div class="pagecontent">
+    <section class="tile" fullscreen="isFullscreen06">
+
+      <!-- tile header -->
+      <div class="tile-header dvd dvd-btm">
+        <h1 class="custom-font"><strong>Edytuj</strong> samochód nr: {{samochod.id}}</h1>
+        <ul class="controls">
+          <li class="dropdown" uib-dropdown on-toggle="toggled(open)">
+
+            <a href uib-dropdown-toggle class="dropdown-toggle settings"><i class="fa fa-cog"></i></a>
+
+            <ul class="dropdown-menu pull-right with-arrow animated littleFadeInUp">
+              <li>
+                <a href tile-control-toggle>
+                  <span class="minimize"><fa name="angle-down"></fa>&nbsp;&nbsp;&nbsp;Minimize</span>
+                  <span class="expand"><fa name="angle-up"></fa>&nbsp;&nbsp;&nbsp;Expand</span>
+                </a>
+              </li>
+              <li>
+                <a href tile-control-refresh ng-click="ajaxFaker()">
+                  <fa name="refresh"></fa> Refresh
+                </a>
+              </li>
+              <li>
+                <a href tile-control-fullscreen ng-click="isFullscreen04 = !isFullscreen04">
+                  <fa name="expand"></fa> Fullscreen
+                </a>
+              </li>
+
+            </ul>
+
+          </li>
+          <li class="remove"><a href tile-control-close><i class="fa fa-times"></i></a></li>
+        </ul>
+      </div>
+
+      <div class="tile-body">
+
+
+
+        <form class="create-form" role="form" ng-submit="displaysamochodid.createSamochod(samochoddash.newSamochod)">
+
+          <p><h4>Marka: <b>{{samochod.marka.nazwaMarki}}</b></h4></p>
+          <div class="form-group">
+            <label class="col-sm-2 control-label">Marka</label>
+            <div class="col-sm-10">
+              <input type="text" class="form-control underline-input" ng-model="samochoddash.newSamochod.marka.nazwaMarki" placeholder="Wpisz markę samochodu">
+            </div>
+          </div>
+          <hr class="line-dashed line-full"/>
+          <p><h4>Model: <b>{{samochod.model.nazwaModelu}}</b></h4></p>
+          <div class="form-group">
+            <label class="col-sm-2 control-label">Model</label>
+            <div class="col-sm-10">
+              <input type="text" class="form-control underline-input" ng-model="samochoddash.newSamochod.model.nazwaModelu" placeholder="Wpisz model samochodu">
+            </div>
+          </div>
+            <hr class="line-dashed line-full"/>
+
+
+            <hr class="line-dashed line-full"/>
+            <p><h4>Typ: <b>{{samochod.typ.nazwaTypu}}</b></h4></p>
+            <div class="form-group">
+              <label class="col-sm-2 control-label">Wybierz jeśli chcesz zmienić typ</label>
+              <div class="col-sm-10" ng-controller="TypCtrl">
+                <select class="form-control mb-10 underline-input" ng-model="samochoddash.newSamochod.typ.id">
+                  <option ng-value=null></option>
+                  <option ng-repeat="typ in typ" ng-value="typ.id">{{typ.nazwaTypu}}</option>
+                  </input>
+                </select>
+              </div>
+            </div>
+
+            <hr class="line-dashed line-full"/>
+
+            <p><h4>Rodzaj paliwa: <b>{{samochod.paliwo}}</b></h4></p>
+            <div class="form-group">
+              <label class="col-sm-2 control-label">Wybierz jeśli chcesz zmienić paliwo</label>
+              <div class="col-sm-10">
+                <select class="form-control mb-10 underline-input" ng-model="samochoddash.newSamochod.paliwo">
+                  <option>Diesel</option>
+                  <option>Benzyna</option>
+                  <option>LPG</option>
+                  <option>Benzyna + LPG</option>
+                </select>
+              </div>
+            </div>
+
+          <hr class="line-dashed line-full"/>
+
+          <div class="form-group">
+            <label class="col-sm-2 control-label">Stan licznika</label>
+            <div class="col-sm-10">
+              <input type="text" class="form-control underline-input" ng-model="samochoddash.newSamochod.stanLicznika" placeholder="Wpisz aktualny stan licznika">
+            </div>
+          </div>
+
+          <hr class="line-dashed line-full"/>
+
+            <div class="form-group">
+              <label class="col-sm-2 control-label">Zmień dostępność samochodu.</label>
+              <div class="col-sm-10">
+                <div class="col-sm-2">
+                  <label class="checkbox checkbox-custom-alt checkbox-custom-lg">
+                    <input name="customRadioAlt" type="radio" ng-model="samochoddash.newSamochod.dostepnosc" value="true"><i></i> Dostępny.
+                  </label>
+                  <label class="checkbox checkbox-custom-alt checkbox-custom-lg">
+                    <input name="customRadioAlt" type="radio" ng-model="samochoddash.newSamochod.dostepnosc" value="false"><i></i> Niedostępny.
+                  </label>
+                </div>
+              </div>
+            </div>
+
+          <hr class="line-dashed line-full"/>
+
+          <div class="form-group">
+            <label class="col-sm-2 control-label">Numer Rejestracyjny</label>
+            <div class="col-sm-10">
+              <input type="text" class="form-control underline-input" ng-model="samochoddash.newSamochod.nrRejestracyjny" placeholder="Podaj numer rejestracyjny">
+            </div>
+          </div>
+
+          <hr class="line-dashed line-full"/>
+
+          <div class="form-group">
+            <label class="col-sm-2 control-label">Numer VIN</label>
+            <div class="col-sm-10">
+              <input type="text" class="form-control underline-input" ng-model="samochoddash.newSamochod.vin" placeholder="Podaj numer VIN">
+            </div>
+          </div>
+
+          <hr class="line-dashed line-full"/>
+            <button type="submit" class="btn btn-primary">Edytuj!
+              <a href= "#/app/samochody/show"></a></button>
+
+        </form>
+
+
+      </div>
+    </section>
+  </div>
+</div>

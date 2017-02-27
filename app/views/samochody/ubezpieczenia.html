@@ -1,0 +1,135 @@
+<div class="page page-ubezpieczenia">
+  <div class="pagecontent">
+    <section class="tile" fullscreen="isFullscreen06">
+
+      <!-- tile header -->
+      <div class="tile-header dvd dvd-btm">
+        <h1 class="custom-font"><strong>Dodaj</strong> ubezpieczenie do samochodu {{samochod.marka.nazwaMarki}} {{samochod.model.nazwaModelu}}</h1>
+        <ul class="controls">
+          <li class="dropdown" uib-dropdown on-toggle="toggled(open)">
+
+            <a href uib-dropdown-toggle class="dropdown-toggle settings"><i class="fa fa-cog"></i></a>
+
+            <ul class="dropdown-menu pull-right with-arrow animated littleFadeInUp">
+              <li>
+                <a href tile-control-toggle>
+                  <span class="minimize"><fa name="angle-down"></fa>&nbsp;&nbsp;&nbsp;Minimize</span>
+                  <span class="expand"><fa name="angle-up"></fa>&nbsp;&nbsp;&nbsp;Expand</span>
+                </a>
+              </li>
+              <li>
+                <a href tile-control-refresh ng-click="ajaxFaker()">
+                  <fa name="refresh"></fa> Refresh
+                </a>
+              </li>
+              <li>
+                <a href tile-control-fullscreen ng-click="isFullscreen04 = !isFullscreen04">
+                  <fa name="expand"></fa> Fullscreen
+                </a>
+              </li>
+
+            </ul>
+
+          </li>
+          <li class="remove"><a href tile-control-close><i class="fa fa-times"></i></a></li>
+        </ul>
+      </div>
+      <!-- /tile header -->
+
+      <!-- tile body -->
+      <div class="tile-body" ng-controller="UbezpieczeniaCtrl">
+
+
+
+        <form name="ubezpieczenia" class="create-form" role="form" ng-submit="ubezpieczeniedash.createUbezpieczenie(ubezpieczeniedash.newUbezpieczenie)">
+
+
+          <hr class="line-dashed line-full"/>
+
+          <div class="form-group">
+            <label class="col-sm-2 control-label">Wybierz rodzaj ubezpieczania</label>
+            <div class="col-sm-10">
+              <select name="ubez" class="form-control mb-10 underline-input" ng-model="ubezpieczeniedash.newUbezpieczenie.rodzaj" required>
+                <option>Ubezpieczenie OC</option>
+                <option>Ubezpieczenie AC</option>
+                <option>Ubezpieczenie ASSISTANCE</option>
+                <option>Ubezpieczenie NNW</option>
+                <option>Ubezpieczenie SZYB</option>
+                <option>Ubezpieczenie OPON</option>
+                <option>Ubezpieczenie OCHRONA PRAWNA</option>
+                <option>Inne</option>
+              </select>
+              <div ng-messages="ubezpieczenia.ubez.$error">
+                <p ng-message="required">Rodzaj ubezpieczenia jest wymagany.</p>
+              </div>
+            </div>
+          </div>
+
+          <hr class="line-dashed line-full"/>
+
+          <div class="form-group">
+            <label class="col-sm-2 control-label">Data wykupienia</label>
+            <div class="col-sm-10">
+              <div class="tile-body" ng-controller="DatepickerDemoCtrl">
+                <!-- row -->
+                <div class="row">
+                  <!-- col -->
+                  <div class="col-md-6">
+                    <p class="input-group">
+                      <input type="text" class="form-control" uib-datepicker-popup="{{format}}" ng-model="ubezpieczeniedash.newUbezpieczenie.dataWystawienia" is-open="opened" min-date="minDate" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" ng-required="true" close-text="Zamknij" />
+                      <span class="input-group-btn">
+                    <button type="button" class="btn btn-default" ng-click="open($event)"><i class="fa fa-calendar"></i></button>
+                  </span>
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+
+          <hr class="line-dashed line-full"/>
+
+          <div class="form-group">
+            <label class="col-sm-2 control-label">Data ważności</label>
+            <div class="col-sm-10">
+              <div class="tile-body" ng-controller="DatepickerDemoCtrl">
+                <!-- row -->
+                <div class="row">
+                  <!-- col -->
+                  <div class="col-md-6">
+                    <p class="input-group">
+                      <input type="text" class="form-control" uib-datepicker-popup="{{format}}" ng-model="ubezpieczeniedash.newUbezpieczenie.dataNastepnego" is-open="opened" min-date="minDate" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" ng-required="true" close-text="Zamknij" />
+                      <span class="input-group-btn">
+                    <button type="button" class="btn btn-default" ng-click="open($event)"><i class="fa fa-calendar"></i></button>
+                  </span>
+                    </p>
+                  </div>
+                </div>
+            </div>
+          </div>
+
+          <hr class="line-dashed line-full"/>
+
+          <div class="form-group">
+            <label class="col-sm-2 control-label">Koszt</label>
+            <div class="col-sm-10">
+              <input type="text" name="koszt" ng-pattern="/^[0-9]/" class="form-control underline-input" ng-model="ubezpieczeniedash.newUbezpieczenie.cena" required placeholder="Ile kosztowało ubezpieczenie?">
+              <div ng-messages="ubezpieczenia.koszt.$error">
+                <p ng-message="pattern">Nieprawidłowa cena.</p>
+                <p ng-message="required">Koszt ubezpieczenia jest wymagany.</p>
+              </div>
+            </div>
+          </div>
+
+          <hr class="line-dashed line-full"/>
+          </div>
+          <button type="submit" class="btn btn-primary" ng-disabled="ubezpieczenia.$invalid">Dodaj ubezpieczenie</button>
+        </form>
+
+
+      </div>
+    </section>
+  </div>
+</div>
+

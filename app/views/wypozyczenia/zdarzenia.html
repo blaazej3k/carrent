@@ -1,0 +1,108 @@
+<div class="page page-ubezpieczenia">
+  <div class="pagecontent">
+    <section class="tile" fullscreen="isFullscreen06">
+
+      <!-- tile header -->
+      <div class="tile-header dvd dvd-btm">
+        <h1 class="custom-font"><strong>Dodaj</strong> zdarzenie do wypozyczenia {{wypozyczenie.id}}</h1>
+        <ul class="controls">
+          <li class="dropdown" uib-dropdown on-toggle="toggled(open)">
+
+            <a href uib-dropdown-toggle class="dropdown-toggle settings"><i class="fa fa-cog"></i></a>
+
+            <ul class="dropdown-menu pull-right with-arrow animated littleFadeInUp">
+              <li>
+                <a href tile-control-toggle>
+                  <span class="minimize"><fa name="angle-down"></fa>&nbsp;&nbsp;&nbsp;Minimize</span>
+                  <span class="expand"><fa name="angle-up"></fa>&nbsp;&nbsp;&nbsp;Expand</span>
+                </a>
+              </li>
+              <li>
+                <a href tile-control-refresh ng-click="ajaxFaker()">
+                  <fa name="refresh"></fa> Refresh
+                </a>
+              </li>
+              <li>
+                <a href tile-control-fullscreen ng-click="isFullscreen04 = !isFullscreen04">
+                  <fa name="expand"></fa> Fullscreen
+                </a>
+              </li>
+
+            </ul>
+
+          </li>
+          <li class="remove"><a href tile-control-close><i class="fa fa-times"></i></a></li>
+        </ul>
+      </div>
+      <!-- /tile header -->
+
+      <!-- tile body -->
+      <div class="tile-body" ng-controller="ZdarzeniaCtrl">
+
+
+
+        <form name="zdarzenie" class="create-form" role="form" ng-submit="zdarzenia.createZdarzenie(zdarzenia.newZdarzenie)">
+
+
+          <hr class="line-dashed line-full"/>
+
+          <div class="form-group">
+            <label class="col-sm-2 control-label">Data zdarzenia</label>
+            <div class="col-sm-10">
+              <div class="tile-body" ng-controller="DatepickerDemoCtrl">
+                <!-- row -->
+                <div class="row">
+                  <!-- col -->
+                  <div class="col-md-6">
+                    <p class="input-group">
+                      <input type="text" class="form-control" uib-datepicker-popup="{{format}}" ng-model="zdarzenia.newZdarzenie.dataZdarzenia" is-open="opened" min-date="minDate" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" ng-required="true" close-text="Zamknij" />
+                      <span class="input-group-btn">
+                    <button type="button" class="btn btn-default" ng-click="open($event)"><i class="fa fa-calendar"></i></button>
+                  </span>
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+
+          <hr class="line-dashed line-full"/>
+
+          <div class="form-group">
+            <label class="col-sm-2 control-label">Kto jest winny szkody?</label>
+            <div class="col-sm-10">
+              <div class="col-sm-2">
+                <label class="checkbox checkbox-custom-alt checkbox-custom-lg">
+                  <input name="customRadioAlt" type="radio" ng-model="zdarzenia.newZdarzenie.winny" value="{{true}}"><i></i> Klient.
+                </label>
+                <label class="checkbox checkbox-custom-alt checkbox-custom-lg">
+                  <input name="customRadioAlt" type="radio" ng-model="zdarzenia.newZdarzenie.winny" value="{{false}}"><i></i> inny.
+                </label>
+              </div>
+            </div>
+          </div>
+
+          <hr class="line-dashed line-full"/>
+
+          <div class="form-group">
+            <label class="col-sm-2 control-label">Szkody</label>
+            <div class="col-sm-10">
+              <textarea name="szkody" class="form-control underline-input" ng-model="zdarzenia.newZdarzenie.szkody" required placeholder="Opisz szkody..."></textarea>
+              <div ng-messages="zdarzenie.szkody.$error">
+                <p ng-message="required">Opis szkód jest wymagany.</p>
+              </div>
+            </div>
+          </div>
+
+          <hr class="line-dashed line-full"/>
+
+          <button type="submit" class="btn btn-primary" ng-disabled="zdarzenie.$invalid">Dodaj zdarzenie</button>
+        </form>
+
+
+      </div>
+    </section>
+  </div>
+</div>
+

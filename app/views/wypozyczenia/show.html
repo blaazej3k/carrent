@@ -1,0 +1,212 @@
+<div class="page page-tables-bootstrap">
+
+
+  <!-- page content -->
+  <div class="pagecontent">
+
+
+    <!-- row -->
+    <div class="row">
+
+
+      <!-- col -->
+      <div class="col-md-6">
+
+
+
+        <section class="tile" fullscreen="isFullscreen04">
+
+          <!-- tile header -->
+          <div class="tile-header dvd dvd-btm">
+            <h1 class="custom-font"><strong>Aktualne</strong> wypożyczenia</h1>
+            <ul class="controls">
+              <li class="dropdown" uib-dropdown on-toggle="toggled(open)">
+
+                <a href uib-dropdown-toggle class="dropdown-toggle settings"><i class="fa fa-cog"></i></a>
+
+                <ul class="dropdown-menu pull-right with-arrow animated littleFadeInUp">
+                  <li>
+                    <a href tile-control-toggle>
+                      <span class="minimize"><fa name="angle-down"></fa>&nbsp;&nbsp;&nbsp;Minimize</span>
+                      <span class="expand"><fa name="angle-up"></fa>&nbsp;&nbsp;&nbsp;Expand</span>
+                    </a>
+                  </li>
+                  <li>
+                    <a href tile-control-refresh ng-click="ajaxFaker()">
+                      <fa name="refresh"></fa> Refresh
+                    </a>
+                  </li>
+                  <li>
+                    <a href tile-control-fullscreen ng-click="isFullscreen04 = !isFullscreen04">
+                      <fa name="expand"></fa> Fullscreen
+                    </a>
+                  </li>
+
+                </ul>
+
+              </li>
+              <li class="remove"><a href tile-control-close><i class="fa fa-times"></i></a></li>
+            </ul>
+          </div>
+          <!-- /tile header -->
+
+          <!-- tile body -->
+          <div class="tile-body p-0">
+
+            <!-- tile body -->
+            <div class="tile-body p-0">
+
+              <table class="table table-hover" >
+                <thead>
+                <tr>
+                  <th>#</th>
+                  <th>Samochod</th>
+                  <th>Nr rejestracyjny</th>
+                  <th>Klient</th>
+                  <th>Data wypożyczenia</th>
+                  <th>Szczegóły</th>
+                  <th>Zakończ</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="wyp in wypozyczeniedash.wypozyczenie | filter: {status: 'true'}">
+                  <td>{{wyp.id}}</td>
+                  <td>{{wyp.samochod.marka.nazwaMarki}} {{wyp.samochod.model.nazwaModelu}}</td>
+                  <td>{{wyp.nrRejestracyjny}}</td>
+                  <td>{{wyp.klient.imieKlienta}}</td>
+                  <td><span>{{wyp.dataWypozyczenia| date: 'dd/MM/yyyy'}}</span></td>
+                  <td><div class="col-md-3 col-sm-4"><a ng-href="/#/app/wypozyczenia/list/{{wyp.id}}">
+                    <i class="glyphicon glyphicon-list-alt"></i>
+                  </a>
+                  </div></td>
+                  <td><div class="col-md-3 col-sm-4"><a ng-href="/#/app/wypozyczenia/close/{{wyp.id}}">
+                    <i class="glyphicon glyphicon-remove"></i>
+                    <span></span>
+                  </a>
+                  </div></td>
+                </tr>
+                </tbody>
+              </table>
+
+            </div>
+            <!-- /tile body -->
+
+
+            <!-- /tile -->
+
+          </div>
+          <!-- /tile body -->
+
+        </section>
+
+
+
+
+
+      </div>
+      <!-- /col -->
+
+
+      <!-- col -->
+      <div class="col-md-6">
+
+        <section class="tile" fullscreen="isFullscreen04">
+
+          <!-- tile header -->
+          <div class="tile-header dvd dvd-btm">
+            <h1 class="custom-font"><strong>Nowe</strong> wypożyczenie</h1>
+            <ul class="controls">
+              <li class="dropdown" uib-dropdown on-toggle="toggled(open)">
+
+                <a href uib-dropdown-toggle class="dropdown-toggle settings"><i class="fa fa-cog"></i></a>
+
+                <ul class="dropdown-menu pull-right with-arrow animated littleFadeInUp">
+                  <li>
+                    <a href tile-control-toggle>
+                      <span class="minimize"><fa name="angle-down"></fa>&nbsp;&nbsp;&nbsp;Minimize</span>
+                      <span class="expand"><fa name="angle-up"></fa>&nbsp;&nbsp;&nbsp;Expand</span>
+                    </a>
+                  </li>
+                  <li>
+                    <a href tile-control-refresh ng-click="ajaxFaker()">
+                      <fa name="refresh"></fa> Refresh
+                    </a>
+                  </li>
+                  <li>
+                    <a href tile-control-fullscreen ng-click="isFullscreen04 = !isFullscreen04">
+                      <fa name="expand"></fa> Fullscreen
+                    </a>
+                  </li>
+
+                </ul>
+
+              </li>
+              <li class="remove"><a href tile-control-close><i class="fa fa-times"></i></a></li>
+            </ul>
+          </div>
+          <!-- /tile header -->
+
+          <!-- tile body -->
+          <div class="tile-body p-0">
+
+            <!-- tile body -->
+
+              <section class="tile" fullscreen="isFullscreen01">
+                <md-content class="md-padding buttondemoBasicUsage">
+                    <section layout="row" layout-sm="column" layout-align="center center">
+                      <md-button class="md-raised md-primary" ng-href="#/app/wypozyczenia/new">Wypożycz samochód</md-button>
+                    </section>
+
+
+            <!-- /tile body -->
+
+
+            <!-- /tile -->
+
+          </div>
+          <!-- /tile body -->
+
+        </section>
+
+
+
+        <!-- tile -->
+        <div class>
+          <section class="tile" fullscreen="isFullscreen01">
+            <md-content class="md-padding buttondemoBasicUsage">
+              <section layout="row" layout-sm="column" layout-align="center center">
+                <md-button class="md-raised md-primary" ng-href="#/app/wypozyczenia/archives">Historia wypożyczeń</md-button>
+              </section>
+            </md-content>
+          </section>
+        </div>
+        <!-- /tile -->
+
+
+      </div>
+      <!-- /tile body -->
+
+      </section>
+      <!-- /tile -->
+
+
+
+
+    </div>
+    <!-- /col -->
+  </div>
+  <!-- /row -->
+
+
+
+
+
+
+</div>
+<!-- /page content -->
+
+
+
+</div>
+
+
