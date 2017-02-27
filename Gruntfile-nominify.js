@@ -40,7 +40,10 @@ module.exports = function (grunt) {
           livereload: '<%= connect.options.livereload %>'
         }
       },
-     
+      jsTest: {
+        files: ['test/spec/{,*/}*.js'],
+        tasks: ['newer:jshint:test', 'karma']
+      },
       styles: {
         files: ['<%= yeoman.app %>/sass/{,*/}*.scss'],
         tasks: ['sass', 'newer:copy:styles', 'autoprefixer']
@@ -65,7 +68,7 @@ module.exports = function (grunt) {
     // The actual grunt server settings
     connect: {
       options: {
-        port: 80,
+        port: 9000,
         // Change this to '0.0.0.0' to access the server from outside.
         hostname: 'localhost',
         livereload: 35729
@@ -76,6 +79,22 @@ module.exports = function (grunt) {
           middleware: function (connect) {
             return [
               connect.static('.tmp'),
+              connect().use(
+                '/bower_components',
+                connect.static('./bower_components')
+              ),
+              connect.static(appConfig.app)
+            ];
+          }
+        }
+      },
+      test: {
+        options: {
+          port: 9001,
+          middleware: function (connect) {
+            return [
+              connect.static('.tmp'),
+              connect.static('test'),
               connect().use(
                 '/bower_components',
                 connect.static('./bower_components')
@@ -105,6 +124,12 @@ module.exports = function (grunt) {
           '<%= yeoman.app %>/scripts/{,*/}*.js'
         ]
       },
+      test: {
+        options: {
+          jshintrc: 'test/.jshintrc'
+        },
+        src: ['test/spec/{,*/}*.js']
+      }
     },
 
     // compile sass files
@@ -380,7 +405,9 @@ module.exports = function (grunt) {
       server: [
         'copy:styles'
       ],
-    
+      test: [
+        'copy:styles'
+      ],
       dist: [
         'copy:styles',
         'imagemin',
@@ -388,6 +415,13 @@ module.exports = function (grunt) {
       ]
     },
 
+    // Test settings
+    karma: {
+      unit: {
+        configFile: 'test/karma.conf.js',
+        singleRun: true
+      }
+    }
   });
 
   grunt.loadNpmTasks('grunt-ng-annotate');
@@ -417,7 +451,8 @@ module.exports = function (grunt) {
     'clean:server',
     'concurrent:test',
     'autoprefixer',
-    'connect:test'
+    'connect:test',
+    'karma'
   ]);
 
   grunt.registerTask('build', [
@@ -440,6 +475,7 @@ module.exports = function (grunt) {
 
   grunt.registerTask('default', [
     'newer:jshint',
+    'test',
     'build'
   ]);
 };
