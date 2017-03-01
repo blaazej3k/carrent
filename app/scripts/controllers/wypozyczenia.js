@@ -195,6 +195,7 @@ app
         initCreateWypozyczenie();
         $location.replace().path('/app/wypozyczenia/list/'+wypozyczenieId);
       })
+      return alert("Nowe wypożyczenie zostało dodane do bazy.");
     }
     function initCreateWypozyczenie() {
       wyp.newWyp = {klient: '',

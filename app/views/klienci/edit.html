@@ -1,10 +1,199 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+<div class="page page-samochody-new">
+  <div class="pagecontent">
+    <section class="tile" fullscreen="isFullscreen06">
 
-</body>
-</html>
+      <!-- tile header -->
+      <div class="tile-header dvd dvd-btm">
+        <h1 class="custom-font"><strong>Edytuj</strong> dane klienta</h1>
+        <ul class="controls">
+          <li class="dropdown" uib-dropdown on-toggle="toggled(open)">
+
+            <a href uib-dropdown-toggle class="dropdown-toggle settings"><i class="fa fa-cog"></i></a>
+
+            <ul class="dropdown-menu pull-right with-arrow animated littleFadeInUp">
+              <li>
+                <a href tile-control-toggle>
+                  <span class="minimize"><fa name="angle-down"></fa>&nbsp;&nbsp;&nbsp;Minimize</span>
+                  <span class="expand"><fa name="angle-up"></fa>&nbsp;&nbsp;&nbsp;Expand</span>
+                </a>
+              </li>
+              <li>
+                <a href tile-control-refresh ng-click="ajaxFaker()">
+                  <fa name="refresh"></fa> Refresh
+                </a>
+              </li>
+              <li>
+                <a href tile-control-fullscreen ng-click="isFullscreen04 = !isFullscreen04">
+                  <fa name="expand"></fa> Fullscreen
+                </a>
+              </li>
+
+            </ul>
+
+          </li>
+          <li class="remove"><a href tile-control-close><i class="fa fa-times"></i></a></li>
+        </ul>
+      </div>
+      <!-- /tile header -->
+
+      <!--<div ng-controller="SamochodyNew">-->
+      <!--<div class="well">-->
+      <!--<form role="form" ng-submit="createSam(newSamm)">-->
+      <!--<div class="form-group">-->
+      <!--<input type="text" class="form-control underline-input" ng-model="newSamm.marka">-->
+      <!--</div>-->
+      <!--<button type="submit" class="btn btn-primary">Wyślij</button>-->
+      <!--</form>-->
+      <!--</div>-->
+      <!--</div>-->
+
+      <!-- tile body -->
+      <div class="tile-body">
+
+
+
+        <form class="create-form" name="edit" role="form" ng-submit="klientedit.createKlient(klientedit.newKlient)">
+          <p><h4>Imię: <b>{{klient.imieKlienta}}</b></h4></p>
+          <div class="form-group">
+            <label class="col-sm-2 control-label">Imię</label>
+            <div class="col-sm-10">
+              <input type="text" name="imie" ng-minlength="3" ng-maxlength="10" class="form-control underline-input" ng-model="klientedit.newKlient.imieKlienta">
+              <!-- show an error if username is too short -->
+              <p ng-show="edit.imie.$error.minlength">Imię jest za krótkie.</p>
+
+              <!-- show an error if username is too long -->
+              <p ng-show="edit.imie.$error.maxlength">Imię jest za długie.</p>
+
+
+            </div>
+          </div>
+
+
+          <hr class="line-dashed line-full"/>
+          <p><h4>Nazwisko: <b>{{klient.nazwiskoKlienta}}</b></h4></p>
+          <div class="form-group">
+            <label class="col-sm-2 control-label">Nazwisko</label>
+            <div class="col-sm-10">
+              <input type="text" ng-pattern="$" name="nazwisko" ng-minlength="3" ng-maxlength="10" class="form-control underline-input" ng-model="klientedit.newKlient.nazwiskoKlienta">
+              <div ng-messages="edit.nazwisko.$error">
+                <p ng-message="minlength">Nazwisko jest za krótkie.</p>
+                <p ng-message="maxlength">Nazwisko jest za długie.</p>
+              </div>
+            </div>
+          </div>
+
+          <hr class="line-dashed line-full"/>
+          <p><h4>PESEL: <b>{{klient.pesel}}</b></h4></p>
+          <div class="form-group">
+            <label class="col-sm-2 control-label">PESEL</label>
+            <div class="col-sm-10">
+              <input name="pesel" ng-maxlength="11" ng-pattern="/^\d{11}$/" type="text" class="form-control underline-input" ng-model="klientedit.newKlient.pesel">
+              <div ng-messages="edit.pesel.$error">
+                <p ng-message="maxlength">Nieprawidłowy PESEL</p>
+                <p ng-message="pattern">Nieprawidłowy PESEL</p>
+              </div>
+            </div>
+          </div>
+
+          <hr class="line-dashed line-full"/>
+          <p><h4>Miejscowość: <b>{{klient.adres.miejscowosc}}</b></h4></p>
+          <div class="form-group">
+            <label class="col-sm-2 control-label">Miejscowosc</label>
+            <div class="col-sm-10" ng-controller="AdresCtrl">
+              <input type="text" name="miejscowosc" ng-pattern="/^[a-zA-ZąćęłńóśźżĄĘŁŃÓŚŹŻ]+$/" ng-minlength="2" class="form-control underline-input" ng-model="klientedit.newKlient.adres.miejscowosc">
+              <div ng-messages="edit.miejscowosc.$error">
+                <p ng-message="pattern">Nieprawidłowa nazwa.</p>
+                <p ng-message="minlength">Nazwa jest za krótka.</p>
+              </div>
+            </div>
+            <p><h4>Ulica: <b>{{klient.adres.ulica}}</b></h4></p>
+            <label class="col-sm-2 control-label">Ulica</label>
+            <div class="col-sm-10" ng-controller="AdresCtrl">
+              <input type="text" name="ulica" ng-minlength="3" ng-maxlength="80" class="form-control underline-input" ng-model="klientedit.newKlient.adres.ulica">
+              <div ng-messages="edit.ulica.$error">
+                <p ng-message="pattern">Nieprawidłowa nazwa ulicy.</p>
+                <p ng-message="maxlength">Nazwa ulicy za długa.</p>
+                <p ng-message="minlength">Nazwa ulicy za krótka.</p>
+              </div>
+            </div>
+            <p><h4>Numer domu: <b>{{klient.adres.nrDomu}}</b></h4></p>
+            <label class="col-sm-2 control-label">Numer domu</label>
+            <div class="col-sm-10" ng-controller="AdresCtrl">
+              <input type="text" name="nrDomu" ng-pattern="/^[0-9]/" ng-minlength="1" ng-maxlength="3" class="form-control underline-input" ng-model="klientedit.newKlient.adres.nrDomu">
+              <div ng-messages="edit.nrDomu.$error">
+                <p ng-message="pattern">Nieprawidłowy numer domu.</p>
+                <p ng-message="maxlength">Numer za długi.</p>
+                <p ng-message="minlength">Numer za krótki.</p>
+              </div>
+            </div>
+            <p><h4>Kod pocztowy: <b>{{klient.adres.kodPocztowy}}</b></h4></p>
+            <label class="col-sm-2 control-label">Kod pocztowy</label>
+            <div class="col-sm-10" ng-controller="AdresCtrl" >
+              <input type="text" ng-maxlength="6" ng-pattern="/^(?:[0-9]{2}-[0-9]{3}|)$/" name="kodPocztowy" class="form-control underline-input" ng-model="klientedit.newKlient.adres.kodPocztowy">
+              <div ng-messages="edit.kodPocztowy.$error">
+                <p ng-message="pattern">Nieprawidłowy kod pocztowy</p>
+                <p ng-message="maxlength">Kod pocztowy za długi.</p>
+              </div>
+            </div>
+          </div>
+
+          <hr class="line-dashed line-full"/>
+          <p><h4>Telefon: <b>{{klient.telefon.numer}}</b></h4></p>
+          <div class="form-group">
+            <label class="col-sm-2 control-label">Telefon</label>
+            <div class="col-sm-10">
+              <input type="text" name="telefon" ng-maxlength="12" ng-pattern="/^(?:\(?\+?48)?(?:[-\.\(\)\s]*(\d)){9}\)?/" class="form-control underline-input" ng-model="klientedit.newKlient.telefon.numer">
+              <div ng-messages="edit.telefon.$error">
+                <p ng-message="pattern">Nieprawidłowy numer.</p>
+                <p ng-message="maxlength">Numer jest za długi.</p>
+              </div>
+            </div>
+          </div>
+
+
+          <hr class="line-dashed line-full"/>
+          <button type="submit" class="btn btn-primary" ng-disabled="edit.$invalid">Edytuj</button>
+        </form>
+
+      </div>
+    </section>
+  </div>
+</div>
+<!--<div class="tile-body" ng-controller="AdresCtrl">-->
+<!--<form class="create-form" role="form" ng-submit="adresdash.createAdres(adresdash.newAdres)">-->
+<!--<div class="form-group">-->
+<!--<label class="col-sm-2 control-label">Miejscowosc</label>-->
+<!--<div class="col-sm-10">-->
+<!--<input type="text" class="form-control underline-input" ng-model="adresdash.newAdres.miejscowosc">-->
+<!--</div>-->
+<!--</div>-->
+<!--<hr class="line-dashed line-full"/>-->
+
+<!--<div class="form-group">-->
+<!--<label class="col-sm-2 control-label">Ulica</label>-->
+<!--<div class="col-sm-10">-->
+<!--<input type="text" class="form-control underline-input" ng-model="adresdash.newAdres.ulica">-->
+<!--</div>-->
+<!--</div>-->
+<!--<hr class="line-dashed line-full"/>-->
+
+<!--<div class="form-group">-->
+<!--<label class="col-sm-2 control-label">Numer domu</label>-->
+<!--<div class="col-sm-10">-->
+<!--<input type="text" class="form-control underline-input" ng-model="adresdash.newAdres.nrDomu">-->
+<!--</div>-->
+<!--</div>-->
+<!--<hr class="line-dashed line-full"/>-->
+
+<!--<div class="form-group">-->
+<!--<label class="col-sm-2 control-label">Kod pocztowy</label>-->
+<!--<div class="col-sm-10">-->
+<!--<input type="text" class="form-control underline-input" ng-model="adresdash.newAdres.kodPocztowy">-->
+<!--</div>-->
+<!--</div>-->
+
+<!--<hr class="line-dashed line-full"/>-->
+<!--<button type="submit" class="btn btn-primary">Dodaj!</button>-->
+<!--</form>-->
+<!--</div>-->
+

@@ -25,7 +25,7 @@ app
         initCreateUbezpieczenie();
         $location.path('/app/samochody/list/'+samochodId);
       })
-     // return $state.go('/app/samochody/list/'+samochodId);
+      return alert("Dodano nowe ubezpieczenie do samochodu.");
     }
     function initCreateUbezpieczenie() {
       ube.newUbe = {rodzaj: '', cena: '',

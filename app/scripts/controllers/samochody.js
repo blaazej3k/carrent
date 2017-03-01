@@ -29,7 +29,7 @@ app
         initCreateSamochod();
         $state.go('app.samochody.show');
       })
-      //return $location.url('/app/samochody/show');
+      return alert("Samochód został dodany do bazy.");
     }
 
     function initCreateSamochod() {

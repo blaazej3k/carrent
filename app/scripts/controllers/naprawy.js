@@ -25,7 +25,7 @@ app
         initCreateNaprawa();
         $location.path('/app/samochody/list/'+samochodId);
       });
-     // return
+      return alert("Dodano nową naprawę do samochodu.");
 
       //$window.alert('Dodano naprawę');
     }

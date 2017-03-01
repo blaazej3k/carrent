@@ -25,7 +25,7 @@ app
         initCreatePrzeglad();
         $location.path('/app/samochody/list/'+samochodId);
       })
-     // return $location.path('/app/samochody/list/'+samochodId);
+      return alert("Dodano nowy przegląd do samochodu.");
     }
     function initCreatePrzeglad() {
       prze.newPrze = {samochod: '', dataPrzegladu: '',

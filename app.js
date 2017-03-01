@@ -256,14 +256,6 @@ var app = angular
         }
       })
 
-      //klienci/edit
-      .state('app.klienci.edit', {
-        url:'/edit/:id',
-        controller: 'KlienciEdit',
-        controllerAs: 'klientedit',
-        templateUrl: 'views/klienci/edit.html'
-      })
-
       //wypozyczenia
       .state('app.wypozyczenia', {
         url:'/wypozyczenia',

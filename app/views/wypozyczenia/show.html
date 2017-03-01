@@ -72,8 +72,8 @@
                 <tr ng-repeat="wyp in wypozyczeniedash.wypozyczenie | filter: {status: 'true'}">
                   <td>{{wyp.id}}</td>
                   <td>{{wyp.samochod.marka.nazwaMarki}} {{wyp.samochod.model.nazwaModelu}}</td>
-                  <td>{{wyp.nrRejestracyjny}}</td>
-                  <td>{{wyp.klient.imieKlienta}}</td>
+                  <td>{{wyp.samochod.nrRejestracyjny}}</td>
+                  <td>{{wyp.klient.imieKlienta}} {{wyp.klient.nazwiskoKlienta}}</td>
                   <td><span>{{wyp.dataWypozyczenia| date: 'dd/MM/yyyy'}}</span></td>
                   <td><div class="col-md-3 col-sm-4"><a ng-href="/#/app/wypozyczenia/list/{{wyp.id}}">
                     <i class="glyphicon glyphicon-list-alt"></i>

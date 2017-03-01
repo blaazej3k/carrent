@@ -4,7 +4,21 @@
   <div class="pageheader" ng-controller="KlienciCtrl">
 <h3>CRS - Car Rental System</h3>
 
-    <span>{{klientdash.klient.id}}</span>
+    <md-content class="md-padding buttondemoBasicUsage">
+      <section layout="row" layout-sm="column" layout-align="center center">
+        <md-button class="md-raised md-primary" ng-href="#/app/wypozyczenia/show">Akutalne wypożyczenia</md-button>
+        <md-button class="md-raised md-primary" ng-href="#/app/wypozyczenia/new">Wypożycz samochód</md-button>
+      </section>
+      <md-content class="md-padding buttondemoBasicUsage">
+        <section layout="row" layout-sm="column" layout-align="center center">
+          <md-button class="md-raised md-primary" ng-href="#/app/samochody/show">Lista samochodów</md-button>
+          <md-button class="md-raised md-primary" ng-href="#/app/samochody/new">Dodaj nowy samochód do bazy</md-button>
+        </section>
+        <md-content class="md-padding buttondemoBasicUsage">
+          <section layout="row" layout-sm="column" layout-align="center center">
+            <md-button class="md-raised md-primary" ng-href="#/app/klienci/show">Lista klientów</md-button>
+            <md-button class="md-raised md-primary" ng-href="#/app/klienci/new">Dodaj nowego klienta do bazy</md-button>
+          </section>
 
   </div>
 

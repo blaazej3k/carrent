@@ -160,6 +160,7 @@ app
         initCreateSamochod();
         $location.replace().path('/app/samochody/show');
       })
+      return alert("Dane samochodu zostały zaktualizowane.");
     }
 
     function initCreateSamochod() {

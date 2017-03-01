@@ -27,7 +27,7 @@ app
         initCreateKlient();
         $state.go('app.klienci.show');
       })
-      //return $location.replace().path('/app/klienci/show');
+      return alert("Klient został dodany do bazy.");
     }
     function initCreateKlient() {
       kli.newKli = {imieKlienta: '', nazwiskoKlienta: '',
